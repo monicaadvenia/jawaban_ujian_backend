@@ -1,0 +1,64 @@
+**1.1**
+
+mysql> create database Toko;
+
+mysql> use Toko;
+
+mysql> create table Produk (
+    -> no int not null auto_increment,
+    -> namaproduk varchar(99),
+    -> penjual varchar(99),
+    -> kota varchar(99),
+    -> kategori varchar(99),
+    -> harga int,
+    -> berat float,
+    -> primary key (no)
+    -> );
+
+mysql> insert into produk values
+    -> (null, "Gamis Tsurayya", "Hijup Store", "Bandung", "Fashion", 300000, 1.5);
+
+mysql> insert into produk values
+    -> (null, "Robot Alpha 1S", "Electra", "Surabaya", "Elektronik", 4000000, 3.0);
+
+mysql> insert into produk values
+    -> (null, "Adidas Telstar 18", "Sportivo", "Jakarta", "Olahraga", 1500000, 0.2);
+
+mysql> insert into produk values
+    -> (null, "Kemeja Pantai", "Sportivo", "Jakarta", "Fashion", 50000, 0.2);
+
+mysql> insert into produk values
+    -> (null, "Trafo Up/Down", "Prima Shop", "Semarang", "Elektronik", 75000, 1.0);
+
+mysql> insert into produk values
+    -> (null, "Matras Yoga", "Hijup Store", "Bandung", "Olahraga", 35000, 0.1);
+
+mysql> insert into produk values
+    -> (null, "Hijup Monalisa", "Hijup Store", "Bandung", "Fashion", 75000, 0.1);
+
+mysql> insert into produk values
+    -> (null, "Drone DJI Tello", "Electra", "Surabaya", "Elektronik", 4000000, 5.0);
+
+mysql> insert into produk values
+    -> (null, "Nike Treadmill", "Nike Indonesia", "Bali", "Olahraga", 7000000, 12.0);
+
+mysql> insert into produk values
+    -> (null, "Celana Jogger", "Waikiki", "Tangerang", "Fashion", 100000, 0.3);
+
+**1.2**
+mysql> select * from produk order by field
+    -> (Kota, 'Bali', 'Bandung', 'Jakarta', 'Tangerang', 'Semarang', 'Surabaya');
+
+**1.3**
+mysql> create view harga_tertinggi_per_kota as
+    -> select *, max(harga) from produk
+    -> group by kota
+    -> order by harga desc;
+
+select no, namaproduk, penjual, kota, kategori, harga, berat from harga_tertinggi_per_kota;
+
+**1.4**
+select * from produk where harga = (select min(harga) from produk);
+
+
+
